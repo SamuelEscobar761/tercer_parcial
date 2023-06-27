@@ -1,0 +1,28 @@
+services:
+  cassandra1:
+    image: cassandra:latest
+    hostname: mycassandra1
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./cassandra_data1:/var/lib/cassandra
+    env_file:
+      - ./cassandra.env
+    networks:
+      - cassandra_network
+  cassandra2:
+    image: cassandra:latest
+    hostname: mycassandra2
+    ports:
+      - "9043:9042"
+    volumes:
+      - ./cassandra_data2:/var/lib/cassandra
+    env_file:
+      - ./cassandra.env
+    networks:
+      - cassandra_network
+volumes:
+  cassandra_data1:
+  cassandra_data2:
+networks:
+  cassandra_network:
