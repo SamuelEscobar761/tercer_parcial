@@ -10,6 +10,7 @@ services:
       - ./cassandra.env
     networks:
       - cassandra_network
+
   cassandra2:
     image: cassandra:latest
     hostname: mycassandra2
@@ -21,8 +22,21 @@ services:
       - ./cassandra.env
     networks:
       - cassandra_network
+
+  cassandra3:
+    image: cassandra:latest
+    hostname: mycassandra3
+    ports:
+      - "9044:9042"
+    volumes:
+      - ./cassandra_data3:/var/lib/cassandra
+    env_file:
+      - ./cassandra.env
+    networks:
+      - cassandra_network
 volumes:
   cassandra_data1:
   cassandra_data2:
+  cassandra_data3:
 networks:
   cassandra_network:
